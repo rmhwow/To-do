@@ -2,9 +2,14 @@
 <div class="jumbotron">
   <h1>Morgan's To-Do Application</h1>
   <p>A self-destructing to-do list to keep you focused on the things that really matter!</p>
+  <% if current_user %>
   <p>
-      <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %> or
-      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
+    <h1>Hello <%= current_user.email%></h1>
+      <%= link_to "Sign Out", destroy_user_session_path, class: 'btn btn-primary', method: :delete %>
   </p>
+  <% else %>
+  <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %> or
+      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
+      <% end %>
 </div>
 
