@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   def index
    @tasks = Task.all
+   @user_tasks = Task.where(user: current_user)
   end
 
   def show
@@ -12,8 +13,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @user = User.find(params[:user_id])
-
+    @user = current_user
   end
 
   def edit
@@ -34,15 +34,17 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
       if @task.destroy
          flash[:notice] = "\"#{@task.body}\" was deleted successfully."
-       redirect_to tasks_path
       else
         flash[:error] = "There was an error deleting the topic."
-       render :show
       end
+      respond_to do |format|
+       format.html
+       format.js
+     end
    end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
      if @task.save
        redirect_to @task, notice: "Task was saved successfully."
      else

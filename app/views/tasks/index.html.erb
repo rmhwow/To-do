@@ -1,11 +1,12 @@
 <h1>All Tasks</h1>
-<% @tasks.each do |task| %>
- <div class="media">
-     <div class="media-body">
-       <h4 class="media-heading">
-         <%= link_to task.body, task %>
-       </h4>
-     </div>
-   </div>
+<p>
+<% if current_user %>
+<% @user_tasks.each do |task|%> 
+<div id=<%="task-#{task.id}"%>> 
+  <%= task.body %>
+  <%= link_to "Delete", task, method: :delete, class: 'btn btn-success', remote: true %>
+</div>
+  <% end %>
+   
 <% end %>
-
+</p>
