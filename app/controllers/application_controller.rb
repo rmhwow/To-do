@@ -5,5 +5,7 @@ class ApplicationController < ActionController::Base
   def hello
      render text: "<h1>Hello</h1><p>Welcome home</p>"
    end
-
+   def after_sign_in_path_for(resource)
+     user_path(current_user)
+   end
 end
