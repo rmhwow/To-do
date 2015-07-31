@@ -25,10 +25,23 @@ admin = User.new(
   admin.save!
  users = User.all
 
+new_task = Task.new(
+  body: "buy oranges",
+  user: admin,
+  created_at: (Time.now - 10.days)
+  )
+new_task.save!
+newtask = Task.new(
+  body: "sing in teh shower",
+  user: admin,
+  created_at: (Time.now - 10.days)
+  )
+newtask.save!
+
 50.times do 
   task = Task.create!(
     body: Faker::Lorem.sentence,
-    user: users.sample
+    user: users.sample,
     )
    task.update_attributes!(created_at: rand(10.minutes .. 1.year).ago)
    task.save!
