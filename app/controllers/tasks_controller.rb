@@ -37,6 +37,7 @@ class TasksController < ApplicationController
       else
         flash[:error] = "There was an error deleting the topic."
       end
+      
       respond_to do |format|
        format.html
        format.js

@@ -5,7 +5,7 @@
 <% @tasks.each do |task|%> 
 <div id=<%="task-#{task.id}"%>> 
   <br>
-  <h3><%= task.body %></h3>
+  <h3><%= task.body %></h3><p> task.days_left </p>
 
 <%= link_to "Edit", edit_task_path(task), class: 'btn btn-success' %>
   <%= link_to "Delete", task, method: :delete, class: 'btn btn-success', remote: true %>
