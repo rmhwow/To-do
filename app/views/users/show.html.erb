@@ -7,7 +7,8 @@
 <% @tasks.each do |task|%> 
 <div id=<%="task-#{task.id}"%>> 
   <br>
-  <h3><%= task.body %></h3>
+  <h3><%= task.body %><small> <%= task.complete ? "Completed" : "Pending" %></small> </h3> <%= link_to "Complete", task_complete_path(task), method: :put, class: "btn btn-success" %>
+
   <p> <%="This task will delete in #{task.days_left} days" %></p>
 
 <%= link_to "Edit", edit_task_path(task), class: 'btn btn-success' %>

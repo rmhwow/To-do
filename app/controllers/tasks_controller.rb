@@ -10,6 +10,16 @@ class TasksController < ApplicationController
     # @user = User.find(params[:user_id])
     @task.user = @user
   end
+  def complete
+    @task = Task.find(params[:task_id])
+    if @task.complete
+      @task.complete = false
+    else
+      @task.complete = true
+    end
+    @task.save! 
+    redirect_to user_path(current_user)
+  end
 
   def new
     @task = Task.new
