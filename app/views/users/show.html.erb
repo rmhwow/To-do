@@ -7,13 +7,13 @@
 <% @tasks.each do |task|%> 
 <div id=<%="task-#{task.id}"%>> 
   <br>
-  <h3><%= task.body %><small> <%= task.complete ? "Completed" : "Pending" %></small> </h3> <%= link_to "Complete", task_complete_path(task), method: :put, class: "btn btn-success" %>
+  <h3><%= task.body %><small> <%= task.complete ? "Completed" : "Pending" %></small> </h3> <%= link_to "Complete", task_complete_path(task), method: :put, class: "glyphicon glyphicon-ok" %>
 
   <p> <%="This task will delete in #{task.days_left} days" %></p>
 
 <%= link_to "Edit", edit_task_path(task), class: 'btn btn-success' %>
   <%= link_to "Delete", task, method: :delete, class: 'btn btn-success', remote: true %>
-  <%= link_to "", task, method: :delete, class: 'glyphicon glyphicon-ok', remote: true %>
+ 
   <br>
 </div>
   <% end %>
